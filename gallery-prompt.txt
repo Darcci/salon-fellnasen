@@ -1,0 +1,74 @@
+GALERIE WIEDER HINZUFÜGEN - ANLEITUNG
+
+1. NAVIGATION LINKS HINZUFÜGEN
+Füge in beiden HTML-Dateien (index.html und impressum.html) den Galerie-Link in der Navigation ein:
+
+In der nav-links Liste (nach "Über mich"):
+<li><a href="#gallery">Galerie</a></li>
+
+Für impressum.html:
+<li><a href="/#gallery">Galerie</a></li>
+
+2. GALERIE-SECTION IN INDEX.HTML
+Füge diese Section vor der Kontakt-Section ein:
+
+<section id="gallery" class="gallery">
+    <h2>Galerie</h2>
+    <div class="gallery-grid">
+        <!-- Hier kommen die Galerie-Bilder -->
+        <div class="gallery-item">
+            <img src="gallery/bild-1.jpg" alt="Hundefrisur Vorher/Nachher">
+            <div class="gallery-overlay">
+                <p>Vorher/Nachher</p>
+            </div>
+        </div>
+        <!-- Weitere gallery-items hier -->
+    </div>
+</section>
+
+3. CSS-STYLES (bereits in styles.css vorhanden)
+Die Styles für die Galerie sind bereits in der styles.css definiert:
+- .gallery
+- .gallery-grid
+- .gallery-item
+- Hover-Effekte
+- Responsive Design
+
+4. BILDER-OPTIMIERUNG
+- Optimale Bildgröße: 800x600px oder 1200x900px
+- Format: .jpg oder .webp für beste Performance
+- Komprimierung nutzen (z.B. mit squoosh.app)
+- Aussagekräftige alt-Texte verwenden
+- Bilder in einem "gallery" Unterordner speichern
+
+5. PERFORMANCE-TIPPS
+- Lazy Loading für Bilder nutzen
+- Thumbnail-Versionen für die Grid-Ansicht
+- Progressive Loading implementieren
+- WebP-Format mit Fallback nutzen
+
+6. OPTIONALE ERWEITERUNGEN
+- Lightbox für Bildvergrößerung
+- Filter nach Kategorien
+- Masonry Layout
+- Infinite Scroll
+- "Load More" Button
+
+Beispiel für ein erweitertes gallery-item mit Overlay:
+<div class="gallery-item">
+    <img 
+        src="gallery/bild-1.jpg" 
+        alt="Golden Retriever Fellpflege" 
+        loading="lazy"
+    >
+    <div class="gallery-overlay">
+        <h3>Golden Retriever</h3>
+        <p>Professionelle Fellpflege</p>
+    </div>
+</div>
+
+WICHTIG:
+- Alle Bilder müssen optimiert sein
+- Copyright beachten
+- Responsive Testing durchführen
+- Performance im Auge behalten 

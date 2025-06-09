@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+Disallow: /404.html
+Sitemap: https://www.salon-fellnasen.ch/sitemap.xml
+
+# Googlebot spezifisch
+User-agent: Googlebot
+Allow: /
+Allow: /index.html
+Disallow: /404.html
+Crawl-delay: 1
+
+User-agent: Googlebot-Image
+Allow: /
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.svg$
+Disallow: /404.html
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Disallow: /404.html
+Crawl-delay: 1

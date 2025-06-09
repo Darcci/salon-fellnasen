@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://www.salon-fellnasen.ch/</loc>
+    <lastmod>2024-05-16T12:00:00+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.salon-fellnasen.ch/logo.png</image:loc>
+      <image:title>Salon Fellnasen Logo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.salon-fellnasen.ch/hero-bg.png</image:loc>
+      <image:title>Salon Fellnasen Hero Bild</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.salon-fellnasen.ch/impressum</loc>
+    <lastmod>2024-05-16T12:00:00+01:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+</urlset>

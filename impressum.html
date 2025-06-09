@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Impressum - Salon Fellnasen</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.salon-fellnasen.ch/impressum" />
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        .impressum-hero {
+            height: 30vh;
+            background: linear-gradient(rgba(139, 69, 19, 0.8), rgba(139, 69, 19, 0.8)), url('hero-bg.svg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 70px;
+        }
+        
+        .impressum-hero h1 {
+            font-size: 3.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .impressum-hero h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+        
+        .impressum-content {
+            max-width: 800px;
+            margin: -50px auto 50px;
+            padding: 3rem;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.1);
+            position: relative;
+            z-index: 10;
+        }
+        
+        .impressum-section {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--light-bg);
+        }
+        
+        .impressum-section:last-of-type {
+            border-bottom: none;
+            margin-bottom: 1rem;
+        }
+        
+        .impressum-section h2 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-align: left;
+            padding-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .impressum-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+        
+        .impressum-section p {
+            color: var(--text-color);
+            line-height: 1.8;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 2rem;
+            color: var(--white);
+            background-color: var(--primary-color);
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
+        }
+        
+        .back-link:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .impressum-hero {
+                height: 25vh;
+            }
+            
+            .impressum-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .impressum-content {
+                margin: -30px 20px 50px;
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo-container">
+            <a href="/"><img src="logo.png" alt="Salon Fellnasen Logo" class="nav-logo"></a>
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/#home">Home</a></li>
+            <li><a href="/#services">Dienstleistungen</a></li>
+            <li><a href="/#about">Über mich</a></li>
+            <li><a href="/#contact">Kontakt</a></li>
+        </ul>
+    </nav>
+
+    <div class="impressum-hero">
+        <h1>Impressum</h1>
+    </div>
+
+    <div class="impressum-content">
+        <div class="impressum-section">
+            <h2>Angaben gemäß § 5 TMG</h2>
+            <p>Stephanie Wegmüller<br>
+            Salon Fellnasen<br>
+            Emmensteg 11<br>
+            3415 Rüegsauschachen</p>
+        </div>
+
+        <div class="impressum-section">
+            <h2>Kontakt</h2>
+            <p><i class="fas fa-phone"></i> Telefon: 077 417 36 20<br>
+            <i class="fas fa-envelope"></i> E-Mail: info@salon-fellnasen.ch</p>
+        </div>
+
+        <div class="impressum-section">
+            <h2>Berufsbezeichnung</h2>
+            <p><i class="fas fa-certificate"></i> Hundecoiffeuse</p>
+        </div>
+
+        <div class="impressum-section">
+            <h2>Haftung für Inhalte</h2>
+            <p>Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
+        </div>
+        
+        <div class="impressum-section">
+            <h2>Urheberrecht</h2>
+            <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem schweizerischen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+        </div>
+
+        <a href="/" class="back-link"><i class="fas fa-arrow-left"></i> Zurück zur Startseite</a>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Salon Fellnasen</h4>
+                <p>Ihr Hundecoiffeur in Rüegsauschachen</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="/#home">Home</a></li>
+                    <li><a href="/#services">Dienstleistungen</a></li>
+                    <li><a href="/#about">Über mich</a></li>
+                    <li><a href="/#contact">Kontakt</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Folgen Sie uns</h4>
+                <div class="social-links">
+                    <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Salon Fellnasen | Alle Rechte vorbehalten | <a href="impressum.html" class="impressum-link">Impressum</a></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
