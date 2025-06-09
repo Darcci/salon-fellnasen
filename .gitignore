@@ -70,4 +70,20 @@ sftp-config.json
 *.zip
 *.tar.gz
 *.rar
-*.7z 
+*.7z
+
+# Accessibility Test Reports (EAA Compliance)
+a11y-reports/
+lighthouse-report.json
+lighthouse-score.json
+pa11y-report.json
+a11y-screenshots/
+*.report.html
+lighthouse-*.json
+axe-*.json
+pa11y-*.json
+
+# Test Dependencies & Outputs
+test-accessibility.js.log
+*.accessibility-report.*
+coverage/ 

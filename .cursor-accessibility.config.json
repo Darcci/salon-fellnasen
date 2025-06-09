@@ -1,0 +1,40 @@
+{
+    "accessibility": {
+      "wcagLevel": "2.2 AA",
+      "standards": ["EN301549", "WCAG2.2AA"],
+      "checks": {
+        "perceivable": ["alt-text", "color-contrast", "reflow"],
+        "operable": ["keyboard-nav", "focus-indicator", "target-size"],
+        "understandable": ["labels", "error-handling", "readable-language"],
+        "robust": ["semantic-markup", "ARIA-roles", "document-structure"]
+      }
+    },
+    "linter": {
+      "pre-commit": {
+        "axe-devtools": {
+          "extensions": [".js", ".jsx", ".ts", ".tsx", ".html", ".md", ".vue"],
+          "ruleset": "wcag2aa"
+        }
+      }
+    },
+    "ci": {
+      "jobs": {
+        "pa11y": {
+          "image": "node:16",
+          "script": [
+            "npm install -g pa11y-ci axe-core",
+            "pa11y-ci --config .pa11yci.json || exit 1",
+            "axe http://localhost:5500 --exit"
+          ]
+        }
+      }
+    },
+    "reports": {
+      "acr": {
+        "autoGenerate": true,
+        "outputFormat": ["json", "markdown"],
+        "criteria": ["EN301549", "WCAG2.2AA"]
+      }
+    }
+  }
+  
