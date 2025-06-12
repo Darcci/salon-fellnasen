@@ -14,33 +14,70 @@
     <meta property="og:image" content="logo.png">
     <meta name="theme-color" content="#8B4513">
     
-    <!-- Preconnect für externe Ressourcen -->
+    <!-- DNS Prefetch für externe Ressourcen -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    
+    <!-- Preconnect nur für kritische Ressourcen -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     
-    <!-- Hero-Bild vorladen -->
-    <link rel="preload" href="hero-bg.png" as="image" fetchpriority="high">
-    <link rel="preload" href="logo.png" as="image" fetchpriority="high">
+    <!-- Critical Images mit WebP Support -->
+    <link rel="preload" as="image" href="hero-bg.webp" type="image/webp" fetchpriority="high" media="(min-width: 768px)">
+    <link rel="preload" as="image" href="hero-bg-mobile.webp" type="image/webp" fetchpriority="high" media="(max-width: 767px)">
+    <link rel="preload" as="image" href="logo.webp" type="image/webp" fetchpriority="high">
     
-    <!-- Critical CSS inline -->
+    <!-- Fallback für Browser ohne WebP Support -->
+    <link rel="preload" as="image" href="hero-bg.jpg" fetchpriority="high" media="(min-width: 768px)">
+    <link rel="preload" as="image" href="hero-bg-mobile.jpg" fetchpriority="high" media="(max-width: 767px)">
+    
+    <!-- Critical CSS inline mit Kompression -->
     <style>
     :root{--primary-color:#8B4513;--secondary-color:#D2691E;--accent-color:#F4A460;--text-color:#333;--light-bg:#FFF5EB;--white:#fff}
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-    body{line-height:1.6;color:var(--text-color)}
-    .navbar{position:fixed;top:0;width:100%;background:rgba(255,255,255,0.95);padding:1rem 5%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 4px rgba(0,0,0,0.1);z-index:1000}
-    .nav-logo{height:50px;width:auto}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{line-height:1.6;color:var(--text-color);font-family:'Poppins',sans-serif;font-display:swap}
+    .navbar{position:fixed;top:0;width:100%;background:rgba(255,255,255,0.95);padding:1rem 5%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 4px rgba(0,0,0,0.1);z-index:1000;backdrop-filter:blur(10px)}
+    .nav-logo{height:50px;width:50px;object-fit:contain}
     .nav-links{display:flex;list-style:none;gap:2rem}
-    .nav-links a{text-decoration:none;color:var(--text-color);font-weight:500}
-    .hero{height:100vh;background:url('hero-bg.png') center/cover;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--text-color);padding-top:70px}
-    .hero-content{background:rgba(255,255,255,0.85);padding:2rem;border-radius:15px;box-shadow:0 4px 6px rgba(0,0,0,0.1);max-width:800px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:2rem}
-    .cta-button{margin-top:2rem;padding:1.2rem 3rem;font-size:1.2rem;font-weight:600;color:var(--white);text-decoration:none;background-image:linear-gradient(45deg,var(--primary-color) 0%,var(--secondary-color) 51%,var(--primary-color) 100%);border-radius:50px;box-shadow:0 6px 15px rgba(139,69,19,0.3)}
-    @media (max-width:768px){.nav-links{position:fixed;top:70px;right:-100%;width:80%;height:calc(100vh - 70px);flex-direction:column;background:rgba(255,255,255,0.98);padding:2rem;transition:right 0.3s ease;align-items:center}.menu-toggle{display:flex!important;flex-direction:column;justify-content:space-between;height:24px;width:30px;cursor:pointer}.nav-links.active{right:0}}
-    .menu-toggle{display:none}
-    .menu-toggle span{display:block;height:3px;width:100%;background:var(--primary-color);transition:all 0.3s ease}
-    .service-card{opacity:0}
-    .service-card.animate{opacity:1;animation:fadeIn 0.6s ease-out forwards}
-    @keyframes fadeIn{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
+    .nav-links a{text-decoration:none;color:var(--text-color);font-weight:500;transition:color 0.3s ease}
+    .nav-links a:hover{color:var(--primary-color)}
+    
+    /* Optimierte Hero Section mit responsive Bildern */
+    .hero{height:100vh;background-image:url('hero-bg-mobile.webp');background-position:center;background-size:cover;background-repeat:no-repeat;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--text-color);padding-top:70px;will-change:transform}
+    
+    /* Desktop Hintergrundbild */
+    @media (min-width:768px){
+        .hero{background-image:url('hero-bg.webp')}
+    }
+    
+    /* Fallback für Browser ohne WebP */
+    .no-webp .hero{background-image:url('hero-bg-mobile.jpg')}
+    @media (min-width:768px){
+        .no-webp .hero{background-image:url('hero-bg.jpg')}
+    }
+    
+    .hero-content{background:rgba(255,255,255,0.85);padding:2rem;border-radius:15px;box-shadow:0 4px 6px rgba(0,0,0,0.1);max-width:800px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:2rem;backdrop-filter:blur(5px)}
+    .hero h1{font-size:clamp(1.5rem,4vw,3rem);font-weight:600;margin-bottom:1rem}
+    .hero p{font-size:clamp(1rem,2.5vw,1.25rem);margin-bottom:1rem}
+    .cta-button{margin-top:2rem;padding:1.2rem 3rem;font-size:1.2rem;font-weight:600;color:var(--white);text-decoration:none;background-image:linear-gradient(45deg,var(--primary-color) 0%,var(--secondary-color) 51%,var(--primary-color) 100%);border-radius:50px;box-shadow:0 6px 15px rgba(139,69,19,0.3);transition:transform 0.3s ease,box-shadow 0.3s ease;display:inline-block}
+    .cta-button:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(139,69,19,0.4)}
+    
+    /* Mobile Menu Optimierung - Entfernt zugunsten der styles.css */
+    @media (max-width:768px){
+        .hero{padding:1rem}
+        .hero-content{padding:1.5rem;margin:0 1rem}
+    }
+    
+    /* Menu Toggle Styles sind in styles.css definiert */
+    
+    /* Lazy Loading Placeholder */
+    .lazy-image{opacity:0;transition:opacity 0.3s ease}
+    .lazy-image.loaded{opacity:1}
+    
+    /* Service Cards Animation */
+    .service-card{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
+    .service-card.animate{opacity:1;transform:translateY(0)}
     
     /* Accessibility Styles */
     .skip-link{position:absolute;top:-40px;left:6px;background:var(--primary-color);color:var(--white);padding:8px;text-decoration:none;border-radius:4px;z-index:9999;transition:top 0.3s}
@@ -50,20 +87,36 @@
     /* Enhanced Focus Styles */
     a:focus,button:focus,input:focus,textarea:focus,select:focus{outline:3px solid var(--accent-color);outline-offset:2px}
     .menu-toggle:focus{outline:3px solid var(--accent-color);outline-offset:3px}
+    
+    /* Performance Optimierungen */
+    .services,.about,.contact{contain:layout style paint}
+    img{contain:layout style}
     </style>
+    
+    <!-- WebP Support Detection -->
+    <script>
+    (function(){
+        var webP=new Image();
+        webP.onload=webP.onerror=function(){
+            document.documentElement.classList.add(webP.height===2?'webp':'no-webp');
+        };
+        webP.src='data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+    })();
+    </script>
+    
+    <!-- Critical Font laden -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"></noscript>
     
     <!-- Non-critical CSS deferred -->
     <link rel="preload" as="style" href="styles.css" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="styles.css"></noscript>
     
-    <!-- Fonts optimiert laden -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"></noscript>
-    
-    <!-- Font Awesome nur notwendige Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+    <!-- Font Awesome deferred -->
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     
+    <link rel="icon" type="image/webp" href="favicon.webp">
     <link rel="icon" type="image/png" href="favicon.png">
     
     <!-- Schema.org JSON-LD für lokales Geschäft -->
@@ -73,7 +126,7 @@
       "@type": "LocalBusiness",
       "@id": "https://www.salon-fellnasen.ch",
       "name": "Hundecoiffeur Salon Fellnasen",
-      "image": "logo.png",
+      "image": "logo.webp",
       "url": "https://www.salon-fellnasen.ch",
       "telephone": "+41774173620",
       "address": {
@@ -108,7 +161,10 @@
     <nav class="navbar" role="navigation" aria-label="Hauptnavigation">
         <div class="logo-container">
             <a href="/" aria-label="Zur Startseite von Hundecoiffeur Salon Fellnasen">
-                <img src="logo.png" alt="Hundecoiffeur Salon Fellnasen Logo" class="nav-logo" width="50" height="50">
+                <picture>
+                    <source srcset="logo.png" type="image/png">
+                    <img src="logo.png" alt="Hundecoiffeur Salon Fellnasen Logo" class="nav-logo" width="50" height="50" loading="eager">
+                </picture>
             </a>
         </div>
         <button class="menu-toggle" id="mobile-menu" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav-menu">
@@ -207,7 +263,7 @@
                 <div class="location-info">
                     <p class="address">
                         <i class="fas fa-map-marker-alt"></i> 
-                        <a href="https://www.google.com/maps?q=Emmensteg+11,+3415+Rüegsauschachen" target="_blank">
+                        <a href="https://www.google.com/maps?q=Emmensteg+11,+3415+Rüegsauschachen" target="_blank" rel="noopener">
                             Emmensteg 11, 3415 Rüegsauschachen
                         </a>
                     </p>
@@ -224,7 +280,7 @@
 
                 <div class="opening-hours">
                     <i class="fas fa-clock"></i>
-                    <h4>Öffnungszeiten des Hundecoiffeurs</h4>
+                    <h3>Öffnungszeiten des Hundecoiffeurs</h3>
                     <div class="hours-grid">
                         <p><span>Montag - Samstag:</span> <span>Nach Vereinbarung</span></p>
                         <p><span>Sonntag:</span> <span>Geschlossen</span></p>
@@ -252,10 +308,10 @@
             <div class="footer-section">
                 <h4>Folgen Sie uns</h4>
                 <div class="social-links">
-                    <a href="https://www.facebook.com/profile.php?id=61574518246180" target="_blank" aria-label="Facebook Seite des Hundecoiffeurs">
+                    <a href="https://www.facebook.com/profile.php?id=61574518246180" target="_blank" rel="noopener" aria-label="Facebook Seite des Hundecoiffeurs">
                       <i class="fab fa-facebook"></i>
                     </a>
-                    <a href="#" target="_blank" aria-label="Instagram Seite des Hundecoiffeurs">
+                    <a href="https://www.instagram.com/salon_fellnasen/" target="_blank" rel="noopener" aria-label="Instagram Seite des Hundecoiffeurs">
                       <i class="fab fa-instagram"></i>
                     </a>
                 </div>
@@ -266,46 +322,79 @@
         </div>
     </footer>
 
-    <!-- Optimiertes JavaScript -->
+    <!-- Optimiertes JavaScript - Minimal und Performance-optimiert -->
     <script>
-    // Mobile Menu mit Accessibility
-    document.getElementById('mobile-menu').addEventListener('click', function() {
-        this.classList.toggle('active');
-        const navLinks = document.querySelector('.nav-links');
-        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+    // Critical JavaScript inline für bessere Performance
+    (function() {
+        'use strict';
         
-        this.setAttribute('aria-expanded', !isExpanded);
-        this.setAttribute('aria-label', isExpanded ? 'Menü öffnen' : 'Menü schließen');
-        navLinks.classList.toggle('active');
-        document.body.classList.toggle('menu-open');
-    });
-    
-    // Google Maps erst laden wenn der Button geklickt wird
-    document.getElementById('load-map').addEventListener('click', function() {
-        const mapContainer = document.getElementById('map-container');
-        mapContainer.innerHTML = `
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d730.9653099132514!2d7.661946153705285!3d47.01369724085376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478e33e7e8369b7b%3A0xa020a19e198f5935!2sSalon%20Fellnasen%20-%20Hundecoiffeur%2Ffriseur!5e1!3m2!1sde!2sch!4v1741453891780!5m2!1sde!2sch"
-                width="100%" 
-                height="400" 
-                style="border:0;" 
-                allowfullscreen="" 
-                loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade"
-                title="Standort Hundecoiffeur Salon Fellnasen">
-            </iframe>
-        `;
-    });
-    
-    // Lazy Loading für script.js
-    window.addEventListener('load', function() {
-        setTimeout(() => {
-            const script = document.createElement('script');
-            script.src = 'script.js';
-            script.async = true;
-            document.body.appendChild(script);
-        }, 1000); // Verzögern um 1 Sekunde nach Seitenladung
-    });
+        // Mobile Menu mit verbesserter Performance
+        var mobileMenuBtn = document.getElementById('mobile-menu');
+        var navLinks = document.querySelector('.nav-links');
+        
+        if (mobileMenuBtn && navLinks) {
+            mobileMenuBtn.addEventListener('click', function() {
+                var isExpanded = this.getAttribute('aria-expanded') === 'true';
+                
+                this.setAttribute('aria-expanded', !isExpanded);
+                this.setAttribute('aria-label', isExpanded ? 'Menü öffnen' : 'Menü schließen');
+                
+                // Toggle beide classes - Menu UND Button Animation!
+                navLinks.classList.toggle('active');
+                mobileMenuBtn.classList.toggle('active');
+                document.body.style.overflow = isExpanded ? '' : 'hidden';
+            }, { passive: true });
+        }
+        
+        // Optimierte Google Maps Lazy Loading
+        var loadMapBtn = document.getElementById('load-map');
+        var mapContainer = document.getElementById('map-container');
+        
+        if (loadMapBtn && mapContainer) {
+            loadMapBtn.addEventListener('click', function() {
+                var iframe = document.createElement('iframe');
+                iframe.src = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d730.9653099132514!2d7.661946153705285!3d47.01369724085376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478e33e7e8369b7b%3A0xa020a19e198f5935!2sSalon%20Fellnasen%20-%20Hundecoiffeur%2Ffriseur!5e1!3m2!1sde!2sch!4v1741453891780!5m2!1sde!2sch';
+                iframe.width = '100%';
+                iframe.height = '400';
+                iframe.style.border = '0';
+                iframe.allowFullscreen = true;
+                iframe.loading = 'lazy';
+                iframe.referrerPolicy = 'no-referrer-when-downgrade';
+                iframe.title = 'Standort Hundecoiffeur Salon Fellnasen';
+                
+                mapContainer.innerHTML = '';
+                mapContainer.appendChild(iframe);
+            }, { once: true, passive: true });
+        }
+        
+        // Service Cards Animation mit Intersection Observer
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        // Beobachte Service Cards
+        document.querySelectorAll('.service-card').forEach(function(card) {
+            observer.observe(card);
+        });
+        
+        // Non-critical JavaScript nach Page Load
+        window.addEventListener('load', function() {
+            // Lade script.js nur wenn nötig und nach delay
+            setTimeout(function() {
+                var script = document.createElement('script');
+                script.src = 'script.js';
+                script.async = true;
+                script.defer = true;
+                document.body.appendChild(script);
+            }, 2000);
+        });
+        
+    })();
     </script>
 </body>
 </html>

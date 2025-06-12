@@ -96,6 +96,32 @@ body {
     color: var(--primary-color);
 }
 
+/* Menu Toggle - versteckt auf Desktop */
+.menu-toggle {
+    display: none;
+}
+
+/* Enhanced Focus Styles für EAA Compliance */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus,
+.menu-toggle:focus {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px rgba(244, 164, 96, 0.3);
+}
+
+/* Spezieller Focus für Buttons mit Background */
+.cta-button:focus,
+.phone-button:focus,
+.map-button:focus {
+    outline: 3px solid #fff;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 6px rgba(244, 164, 96, 0.5);
+}
+
 /* Hero Section */
 .hero {
     height: 100vh;
@@ -611,7 +637,7 @@ body {
     margin-bottom: 1rem;
 }
 
-.opening-hours h4 {
+.opening-hours h3 {
     color: var(--primary-color);
     margin-bottom: 1.5rem;
     font-size: 1.3rem;
@@ -698,11 +724,14 @@ footer {
 /* Mobile Menu Styles */
 @media (max-width: 768px) {
     .nav-links {
-        display: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
         position: fixed;
         top: 100px;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translateX(-50%) translateY(-20px);
         width: 90%;
         max-width: 400px;
         background: rgba(255, 255, 255, 0.95);
@@ -714,15 +743,13 @@ footer {
         border: 1px solid rgba(255, 255, 255, 0.2);
         z-index: 1000;
         opacity: 0;
+        visibility: hidden;
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
     .nav-links.active {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1.5rem;
         opacity: 1;
+        visibility: visible;
         transform: translateX(-50%) translateY(0);
     }
 
@@ -844,7 +871,7 @@ footer {
         font-size: clamp(1.6rem, 4.5vw, 2.5rem);
     }
 
-    .opening-hours h4 {
+    .opening-hours h3 {
         font-size: clamp(1.4rem, 3.5vw, 2rem);
     }
 
@@ -882,7 +909,7 @@ footer {
         font-size: clamp(1.5rem, 4vw, 2rem);
     }
 
-    .opening-hours h4 {
+    .opening-hours h3 {
         font-size: clamp(1.3rem, 3vw, 1.8rem);
     }
 
@@ -944,7 +971,7 @@ h4 {
     margin-bottom: 1rem;
 }
 
-.opening-hours h4 {
+.opening-hours h3 {
     font-size: 2.2rem;
     margin-bottom: 2rem;
 }
@@ -980,7 +1007,7 @@ h4 {
         font-size: clamp(1.6rem, 4.5vw, 2.5rem);
     }
 
-    .opening-hours h4 {
+    .opening-hours h3 {
         font-size: clamp(1.4rem, 3.5vw, 2rem);
     }
 
@@ -1006,7 +1033,7 @@ h4 {
         font-size: clamp(1.5rem, 4vw, 2rem);
     }
 
-    .opening-hours h4 {
+    .opening-hours h3 {
         font-size: clamp(1.3rem, 3vw, 1.8rem);
     }
 }

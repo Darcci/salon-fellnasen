@@ -15,16 +15,8 @@ function debounce(func, wait) {
     };
 }
 
-// Verbesserte Mobile Menu Toggle mit Animation
-const mobileMenu = document.getElementById('mobile-menu');
-const navLinks = document.querySelector('.nav-links');
-const navbar = document.querySelector('.navbar');
-
-mobileMenu.addEventListener('click', () => {
-    mobileMenu.classList.toggle('active');
-    navLinks.classList.toggle('active');
-    document.body.classList.toggle('menu-open');
-});
+// Mobile Menu wird im inline JavaScript der index.html gehandelt
+// Entfernt um Konflikte zu vermeiden
 
 // Smooth Scroll mit verbesserter Performance
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -42,9 +34,15 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
 
             // Mobile Menü schließen
-            navLinks.classList.remove('active');
-            mobileMenu.classList.remove('active');
-            document.body.classList.remove('menu-open');
+            const navLinksEl = document.querySelector('.nav-links');
+            const mobileMenuEl = document.getElementById('mobile-menu');
+            if (navLinksEl) navLinksEl.classList.remove('active');
+            if (mobileMenuEl) {
+                mobileMenuEl.classList.remove('active');
+                mobileMenuEl.setAttribute('aria-expanded', 'false');
+                mobileMenuEl.setAttribute('aria-label', 'Menü öffnen');
+            }
+            document.body.style.overflow = '';
         }
     });
 });
