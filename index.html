@@ -12,7 +12,8 @@
     <meta property="og:description" content="Weil Ihr Hund nur das Beste verdient – Termin beim Hundecoiffeur Fellnasen vereinbaren.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="logo.png">
-    <meta name="theme-color" content="#8B4513">
+    <meta name="msapplication-navbutton-color" content="#8B4513">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#8B4513">
     
     <!-- DNS Prefetch für externe Ressourcen -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -24,20 +25,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Critical Images mit WebP Support -->
-    <link rel="preload" as="image" href="hero-bg.webp" type="image/webp" fetchpriority="high" media="(min-width: 768px)">
-    <link rel="preload" as="image" href="hero-bg-mobile.webp" type="image/webp" fetchpriority="high" media="(max-width: 767px)">
-    <link rel="preload" as="image" href="logo.webp" type="image/webp" fetchpriority="high">
+    <link rel="preload" as="image" href="hero-bg.webp" type="image/webp" media="(min-width: 768px)">
+    <link rel="preload" as="image" href="hero-bg-mobile.webp" type="image/webp" media="(max-width: 767px)">
+    <link rel="preload" as="image" href="logo.webp" type="image/webp">
     
     <!-- Fallback für Browser ohne WebP Support -->
-    <link rel="preload" as="image" href="hero-bg.jpg" fetchpriority="high" media="(min-width: 768px)">
-    <link rel="preload" as="image" href="hero-bg-mobile.jpg" fetchpriority="high" media="(max-width: 767px)">
+    <link rel="preload" as="image" href="hero-bg.jpg" media="(min-width: 768px)">
+    <link rel="preload" as="image" href="hero-bg-mobile.jpg" media="(max-width: 767px)">
     
     <!-- Critical CSS inline mit Kompression -->
     <style>
     :root{--primary-color:#8B4513;--secondary-color:#D2691E;--accent-color:#F4A460;--text-color:#333;--light-bg:#FFF5EB;--white:#fff}
     *{margin:0;padding:0;box-sizing:border-box}
     body{line-height:1.6;color:var(--text-color);font-family:'Poppins',sans-serif;font-display:swap}
-    .navbar{position:fixed;top:0;width:100%;background:rgba(255,255,255,0.95);padding:1rem 5%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 4px rgba(0,0,0,0.1);z-index:1000;backdrop-filter:blur(10px)}
+    .navbar{position:fixed;top:0;width:100%;background:rgba(255,255,255,0.95);padding:1rem 5%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 4px rgba(0,0,0,0.1);z-index:1000;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
     .nav-logo{height:50px;width:50px;object-fit:contain}
     .nav-links{display:flex;list-style:none;gap:2rem}
     .nav-links a{text-decoration:none;color:var(--text-color);font-weight:500;transition:color 0.3s ease}
@@ -57,7 +58,7 @@
         .no-webp .hero{background-image:url('hero-bg.jpg')}
     }
     
-    .hero-content{background:rgba(255,255,255,0.85);padding:2rem;border-radius:15px;box-shadow:0 4px 6px rgba(0,0,0,0.1);max-width:800px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:2rem;backdrop-filter:blur(5px)}
+    .hero-content{background:rgba(255,255,255,0.85);padding:2rem;border-radius:15px;box-shadow:0 4px 6px rgba(0,0,0,0.1);max-width:800px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:2rem;-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
     .hero h1{font-size:clamp(1.5rem,4vw,3rem);font-weight:600;margin-bottom:1rem}
     .hero p{font-size:clamp(1rem,2.5vw,1.25rem);margin-bottom:1rem}
     .cta-button{margin-top:2rem;padding:1.2rem 3rem;font-size:1.2rem;font-weight:600;color:var(--white);text-decoration:none;background-image:linear-gradient(45deg,var(--primary-color) 0%,var(--secondary-color) 51%,var(--primary-color) 100%);border-radius:50px;box-shadow:0 6px 15px rgba(139,69,19,0.3);transition:transform 0.3s ease,box-shadow 0.3s ease;display:inline-block}
@@ -327,6 +328,13 @@
     // Critical JavaScript inline für bessere Performance
     (function() {
         'use strict';
+        
+        // Feature Detection für fetchpriority
+        if ('fetchPriority' in HTMLImageElement.prototype) {
+            document.querySelectorAll('img[data-fetchpriority]').forEach(img => {
+                img.fetchPriority = img.dataset.fetchpriority;
+            });
+        }
         
         // Mobile Menu mit verbesserter Performance
         var mobileMenuBtn = document.getElementById('mobile-menu');
