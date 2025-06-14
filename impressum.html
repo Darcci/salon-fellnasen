@@ -143,16 +143,16 @@
         <div class="logo-container">
             <a href="/"><img src="logo.png" alt="Salon Fellnasen Logo" class="nav-logo"></a>
         </div>
-        <div class="menu-toggle" id="mobile-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <ul class="nav-links">
-            <li><a href="/#home">Home</a></li>
-            <li><a href="/#services">Dienstleistungen</a></li>
-            <li><a href="/#about">Über mich</a></li>
-            <li><a href="/#contact">Kontakt</a></li>
+        <button class="menu-toggle" id="mobile-menu" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav-menu">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </button>
+        <ul class="nav-links" id="nav-menu" role="menubar">
+            <li role="none"><a href="/#home" role="menuitem">Home</a></li>
+            <li role="none"><a href="/#services" role="menuitem">Dienstleistungen</a></li>
+            <li role="none"><a href="/#about" role="menuitem">Über mich</a></li>
+            <li role="none"><a href="/#contact" role="menuitem">Kontakt</a></li>
         </ul>
     </nav>
 
@@ -230,5 +230,30 @@
     </footer>
 
     <script src="script.js"></script>
+    
+    <!-- Mobile Menu Logic -->
+    <script>
+    (function() {
+        'use strict';
+        
+        // Mobile Menu mit verbesserter Performance
+        var mobileMenuBtn = document.getElementById('mobile-menu');
+        var navLinks = document.querySelector('.nav-links');
+        
+        if (mobileMenuBtn && navLinks) {
+            mobileMenuBtn.addEventListener('click', function() {
+                var isExpanded = this.getAttribute('aria-expanded') === 'true';
+                
+                this.setAttribute('aria-expanded', !isExpanded);
+                this.setAttribute('aria-label', isExpanded ? 'Menü öffnen' : 'Menü schließen');
+                
+                // Toggle beide classes - Menu UND Button Animation!
+                navLinks.classList.toggle('active');
+                mobileMenuBtn.classList.toggle('active');
+                document.body.style.overflow = isExpanded ? '' : 'hidden';
+            }, { passive: true });
+        }
+    })();
+    </script>
 </body>
 </html> 
