@@ -126,7 +126,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Enhanced Navbar Scroll Behavior mit Glassmorphism
+// Enhanced Navbar Scroll Behavior mit permanentem Glassmorphism
 const handleScroll = () => {
     const currentScroll = window.pageYOffset;
     
@@ -134,16 +134,8 @@ const handleScroll = () => {
         window.requestAnimationFrame(() => {
             const navbar = document.getElementById('navbar');
             if (navbar) {
-                // Add/remove backdrop blur effect based on scroll
-                if (currentScroll > 50) {
-                    navbar.classList.add('bg-white/95', 'backdrop-blur-lg', 'shadow-lg');
-                    navbar.classList.remove('bg-white/80');
-                } else {
-                    navbar.classList.add('bg-white/80');
-                    navbar.classList.remove('bg-white/95', 'backdrop-blur-lg', 'shadow-lg');
-                }
-                
-                // Hide/show navbar on scroll
+                // Glassmorphismus bleibt IMMER aktiv - keine Änderung der backdrop-filter Klassen
+                // Nur Hide/show navbar on scroll
                 if (currentScroll <= 0) {
                     navbar.style.transform = 'translateY(0)';
                 } else if (currentScroll > lastKnownScrollPosition && currentScroll > 200) {
